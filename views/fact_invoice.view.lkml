@@ -114,6 +114,7 @@ view: fact_invoice {
     type: number
     sql: ${TABLE}.total_paid_invoice_amount_gross_global ;;
     group_label: "Company info"
+    drill_fields: [invoice_details*]
   }
 
   dimension: invoice_amount_net_global {
@@ -135,6 +136,13 @@ view: fact_invoice {
     group_label: "Invoice info"
   }
 
+  dimension: invoice_amount_ex_credit_notes_and_discounts_global {
+    type: number
+    sql: ${TABLE}.invoice_amount_ex_credit_notes_and_discounts_global ;;
+    group_label: "Invoice info"
+  }
+
+
   dimension: discount_amount_global {
     type: number
     sql: ${TABLE}.discount_amount_global ;;
@@ -150,19 +158,19 @@ view: fact_invoice {
   dimension: payment_amount_global {
     type: number
     sql: ${TABLE}.payment_amount_global ;;
-    group_label: "Payments"
+    group_label: "Payments and credit notes"
+  }
+
+  dimension: credit_note_amount_global {
+    type: number
+    sql: ${TABLE}.credit_note_amount_global ;;
+    group_label: "Payments and credit notes"
   }
 
   dimension: payment_amount_outstanding_global {
     type: number
     sql: ${TABLE}.payment_amount_outstanding_global ;;
-    group_label: "Payments"
-  }
-
-  dimension: total_payment_amount_due_global {
-    type: number
-    sql: ${TABLE}.total_payment_amount_due_global ;;
-    group_label: "Payments"
+    group_label: "Payments and credit notes"
   }
 
   dimension: lost_working_capital_amount_global {
@@ -181,6 +189,24 @@ view: fact_invoice {
     type: number
     sql: ${TABLE}.missed_opportunity_amount_global ;;
     group_label: "Missed opportnity"
+  }
+
+  dimension: payment_out_global {
+    type: number
+    sql: ${TABLE}.payment_out_global ;;
+    group_label: "Net cash flow positioning"
+  }
+
+  dimension: payment_in_global {
+    type: number
+    sql: ${TABLE}.payment_in_global ;;
+    group_label: "Net cash flow positioning"
+  }
+
+  dimension: net_payment_global {
+    type: number
+    sql: ${TABLE}.net_payment_global ;;
+    group_label: "Net cash flow positioning"
   }
 
   dimension_group: invoice_due {
@@ -212,7 +238,7 @@ view: fact_invoice {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.payment_date ;;
-    group_label: "Payments"
+    group_label: "Payments and credit notes"
   }
 
   dimension: days_due_to_payment {
@@ -337,7 +363,11 @@ view: fact_invoice {
 
   measure: count {
     type: count
-    drill_fields: [company_name]
+   drill_fields: [invoice_details*]
+
+  }
+  set: invoice_details {
+    fields: [invoice_friendly_id, invoice_issue_date, invoice_due_date, invoice_term_days, invoice_amount_gross_global, payment_amount_global, payment_amount_outstanding_global, payment_status]
   }
 
 
