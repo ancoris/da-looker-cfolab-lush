@@ -1,6 +1,45 @@
-view: fact_invoice {
-  sql_table_name: `cfolab-lush.dw_pl_cfolab.fact_invoice`
+view: fact_invoice_forecast {
+  sql_table_name: `cfolab-lush.dw_pl_cfolab.fact_invoice_forecast`
     ;;
+
+  dimension: scenario {
+    type: string
+    sql: ${TABLE}.scenario ;;
+    group_label: "Scenario"
+  }
+
+  dimension: scenario_name {
+    type: string
+    sql: ${TABLE}.scenario_name ;;
+    group_label: "Scenario"
+  }
+
+  dimension: scenario_input_link {
+    type: string
+    sql: ${TABLE}.scenario_input_link ;;
+    html: <a href="{{value}}"  target="_blank"><font style="color:blue; text-decoration:underline">model inputs</font></a>
+    ;;
+    group_label: "Scenario"
+  }
+
+  dimension: balance {
+    type: number
+    sql: ${TABLE}.balance ;;
+    group_label: "Scenario"
+  }
+
+  dimension: is_forecast {
+    type: number
+    sql: ${TABLE}.is_forecast ;;
+    group_label: "Scenario"
+  }
+  dimension: invoice_sequence {
+    label: "Invoice sequence no"
+    type: number
+    sql: ${TABLE}.invoice_sequence ;;
+    group_label: "Scenario"
+  }
+
 
   dimension: invoice_type {
     type: string
@@ -13,7 +52,7 @@ view: fact_invoice {
     type: string
     sql: ${TABLE}.invoice_friendly_id ;;
     html: <a href="https://go.xero.com/{% if invoice_type == 'PAY' %}AccountsPayable{%else%}AccountsReceivable{%endif%}/View.aspx?InvoiceID={{invoice_id}}"  target="_blank"><font style="color:blue; text-decoration:underline">{{ value }}</font></a>
-    ;;
+      ;;
     group_label: "Invoice info"
   }
 
@@ -273,7 +312,9 @@ view: fact_invoice {
       week,
       month,
       quarter,
-      year
+      year,
+      week_of_year
+
     ]
     convert_tz: no
     datatype: date
@@ -406,12 +447,10 @@ view: fact_invoice {
 
   measure: count {
     type: count
-   drill_fields: [invoice_details*]
+    drill_fields: [invoice_details*]
 
   }
   set: invoice_details {
     fields: [invoice_friendly_id, invoice_issue_date, invoice_due_date, invoice_term_days, invoice_amount_gross_global, payment_amount_global, payment_amount_outstanding_global, payment_status]
   }
-
-
 }

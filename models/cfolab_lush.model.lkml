@@ -14,10 +14,10 @@ explore: fact_invoice {
   label: "All invoices"
 }
 
-explore: fact_invoice_pay {
-  label: "Payables"
+explore: fact_invoice_forecast {
+  label: "Forecasts"
 }
 
-explore: fact_invoice_rec {
-  label: "Receivables"
+explore: dim_input_config {
+  label: "CFO input general"
 }
