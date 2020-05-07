@@ -27,5 +27,8 @@ explore: ml_invoice_rec_classification_prediction_output {
     relationship: one_to_one
     sql_on: ${ml_invoice_rec_classification_prediction_output.invoice_id} = ${fact_invoice.invoice_id} ;;
   }
-  label: "ML predictions"
+  join: ml_invoice_rec_classification_predict {
+    relationship: one_to_one
+    sql_on: ${ml_invoice_rec_classification_predict.invoice_id} = ${ml_invoice_rec_classification_prediction_output.invoice_id} ;;
+  }
 }
