@@ -134,6 +134,13 @@ view: fact_invoice_forecast {
     group_label: "Payments and credit notes"
   }
 
+  dimension: deferral_amount {
+    type: number
+    value_format_name: gbp
+    sql: ${TABLE}.deferral_amount ;;
+    group_label: "Net cash flow positioning"
+  }
+
   measure: count {
     type: count
     drill_fields: [invoice_details*]
