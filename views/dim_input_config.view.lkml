@@ -2,56 +2,41 @@ view: dim_input_config {
   sql_table_name: `cfolab-lush.dw_pl_cfolab_input.dim_input_config`
     ;;
 
-  dimension: description {
+  dimension: current_balance {
+    type: number
+    sql: ${TABLE}.current_balance ;;
+  }
+
+  dimension: forecast_span_days {
+    type: number
+    sql: ${TABLE}.forecast_span_days ;;
+  }
+
+  dimension: link_to_sheet {
     type: string
-    sql: ${TABLE}.description ;;
+    sql: ${TABLE}.link_to_sheet ;;
+    html: <a href="{{value}}"  target="_blank"><font style="color:blue; text-decoration:underline">model inputs</font></a>
+    ;;
   }
 
-  dimension_group: dw_delivery {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.dw_delivery_time ;;
-  }
-
-  dimension_group: dw_process {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.dw_process_time ;;
-  }
-
-  dimension: name {
+  dimension: reporting_currency {
     type: string
-    sql: ${TABLE}.name ;;
+    sql: ${TABLE}.reporting_currency ;;
   }
 
   dimension: scenario {
+    primary_key: yes
     type: string
     sql: ${TABLE}.scenario ;;
   }
 
-  dimension: value {
+  dimension: scenario_name {
     type: string
-    sql: ${TABLE}.value ;;
+    sql: ${TABLE}.scenario_name ;;
   }
 
   measure: count {
     type: count
-    drill_fields: [name]
+    drill_fields: [scenario_name]
   }
 }
