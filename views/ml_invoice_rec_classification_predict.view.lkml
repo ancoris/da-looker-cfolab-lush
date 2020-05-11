@@ -76,13 +76,30 @@ view: ml_invoice_rec_classification_predict {
     description: "Status of the most recent invoice"
     type: string
     sql: ${TABLE}.invoice_status_1 ;;
+    html: <a href="https://go.xero.com/{% if fact_invoice.invoice_type == 'PAY' %}AccountsPayable{%else%}AccountsReceivable{%endif%}/View.aspx?InvoiceID={{invoice_1_id}}"  target="_blank"><font style="color:blue; text-decoration:underline">{{ value }}</font></a>;;
   }
+
+  dimension: invoice_1_id {
+    label: "Id of Previous"
+    description: "Id of the most recent invoice"
+    type: string
+    sql: ${TABLE}.invoice_1_id ;;
+    }
 
   dimension: invoice_status_2 {
     label: "Previous+1"
     description: "Status of the second most recent invoice"
     type: string
     sql: ${TABLE}.invoice_status_2 ;;
+    html: <a href="https://go.xero.com/{% if fact_invoice.invoice_type == 'PAY' %}AccountsPayable{%else%}AccountsReceivable{%endif%}/View.aspx?InvoiceID={{invoice_2_id}}"  target="_blank"><font style="color:blue; text-decoration:underline">{{ value }}</font></a>;;
+
+  }
+
+  dimension: invoice_2_id {
+    label: "Id of Previous+1"
+    description: "Id of the second most recent invoice"
+    type: string
+    sql: ${TABLE}.invoice_2_id ;;
   }
 
   dimension: invoice_status_3 {
@@ -90,6 +107,15 @@ view: ml_invoice_rec_classification_predict {
     description: "Status of the third most recent invoice"
     type: string
     sql: ${TABLE}.invoice_status_3 ;;
+    html: <a href="https://go.xero.com/{% if fact_invoice.invoice_type == 'PAY' %}AccountsPayable{%else%}AccountsReceivable{%endif%}/View.aspx?InvoiceID={{invoice_3_id}}"  target="_blank"><font style="color:blue; text-decoration:underline">{{ value }}</font></a>;;
+
+  }
+
+  dimension: invoice_3_id {
+    label: "Id of Previous+2"
+    description: "Id of the third most recent invoice"
+    type: string
+    sql: ${TABLE}.invoice_3_id ;;
   }
 
   dimension: invoice_term_days {
