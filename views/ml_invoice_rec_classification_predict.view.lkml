@@ -6,12 +6,14 @@ view: ml_invoice_rec_classification_predict {
     description: "Average days late of invoices issued within three months prior to this one. Negative means early"
     type: number
     sql: ${TABLE}.avg_days_late ;;
+    value_format: "0.##"
   }
 
   dimension: avg_days_outstanding {
     description: "Average days outstanding of invoices issued within three months prior to this one"
     type: number
     sql: ${TABLE}.avg_days_outstanding ;;
+    value_format: "0.##"
   }
 
   dimension: count_outstanding_invoices {
