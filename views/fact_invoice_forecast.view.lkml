@@ -2,6 +2,13 @@ view: fact_invoice_forecast {
   sql_table_name: `cfolab-lush.dw_pl_cfolab.fact_invoice_forecast`
     ;;
 
+  dimension: compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: CONCAT(${TABLE}.scenario, '-', ${TABLE}.invoice_type, '-', 'invoice_friendly_id') ;;
+  }
+
   dimension: scenario {
     type: string
     sql: ${TABLE}.scenario ;;
@@ -41,7 +48,14 @@ view: fact_invoice_forecast {
     group_label: "Scenario"
   }
 
-  dimension: invoice_type {
+  dimension: invoice_sequence_forward_view {
+    label: "Invoice sequence no forward view"
+    type: number
+    sql: ${TABLE}.invoice_sequence_forward_view ;;
+    group_label: "Scenario"
+  }
+
+    dimension: invoice_type {
     type: string
     sql: ${TABLE}.invoice_type ;;
     group_label: "Invoice info"
@@ -132,6 +146,40 @@ view: fact_invoice_forecast {
     datatype: date
     sql: ${TABLE}.payment_date ;;
     group_label: "Payments and credit notes"
+  }
+
+  dimension: deferral_amount_rec {
+    type: number
+    value_format_name: gbp
+    sql: ${TABLE}.deferral_amount_rec ;;
+    group_label: "Net cash flow positioning"
+  }
+
+  dimension: deferral_amount_pay {
+    type: number
+    value_format_name: gbp
+    sql: ${TABLE}.deferral_amount_pay ;;
+    group_label: "Net cash flow positioning"
+  }
+
+  dimension: payroll_amount_rec {
+    type: number
+    value_format_name: gbp
+    sql: ${TABLE}.payroll_amount_rec ;;
+    group_label: "Net cash flow positioning"
+  }
+
+  dimension: payroll_amount_pay {
+    type: number
+    value_format_name: gbp
+    sql: -1*${TABLE}.payroll_amount_pay ;;
+    group_label: "Net cash flow positioning"
+  }
+
+  dimension: is_in_weekly_view {
+    type: number
+    sql: ${TABLE}.is_in_weekly_view ;;
+    group_label: "Net cash flow positioning"
   }
 
   measure: count {
