@@ -99,6 +99,10 @@ view: fact_invoice {
     type: string
     sql: ${TABLE}.company_name ;;
     group_label: "Company info"
+    link: {
+      label: "See all invoices from {{ value }}"
+      url: "/looks/31?f[fact_invoice.company_name]={{ value }}&f[fact_invoice.invoice_type]={{ _filters['fact_invoice.invoice_type'] | url_encode }}&sorts=fact_invoice.invoice_issue_date+desc"
+    }#31 is the look number for "All Invoices" in this instance.
   }
 
   dimension: company_segment_1 {
@@ -155,7 +159,7 @@ view: fact_invoice {
   }
 
   dimension: invoice_amount_gross_global {
-    label: "Amount gross"
+    label: "Amount Gross"
     type: number
     value_format_name: gbp
     sql: ${TABLE}.invoice_amount_gross_global ;;
