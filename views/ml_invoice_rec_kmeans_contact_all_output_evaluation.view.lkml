@@ -13,6 +13,7 @@ view: ml_invoice_rec_kmeans_contact_all_output_evaluation {
   }
 
   dimension: centroid_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.centroid_id ;;
   }
