@@ -44,4 +44,17 @@ explore: ml_invoice_rec_kmeans_contact_all_output_extract {
     relationship: many_to_many
     sql_on: ${ml_invoice_rec_kmeans_contact_all_output_extract.nearest_centroid_id} = ${ml_invoice_rec_kmeans_contact_all_output_evaluation_unpivot.centroid_id} ;;
   }
+  join: fact_invoice {
+    relationship: one_to_many
+    sql_on: ${ml_invoice_rec_kmeans_contact_all_output_extract.company_id} = ${fact_invoice.company_id} ;;
+  }
+}
+
+
+explore: ml_invoice_rec_kmeans_contact_all_output_evaluation_normalised_unpivot {
+  label: "Contact REC cluster output (Normalised)"
+  join: ml_invoice_rec_kmeans_contact_all_output_extract_normalised_unpivot {
+    relationship: many_to_many
+    sql_on:  ${ml_invoice_rec_kmeans_contact_all_output_evaluation_normalised_unpivot.centroid_id} = ${ml_invoice_rec_kmeans_contact_all_output_extract_normalised_unpivot.nearest_centroid_id};;
+  }
 }

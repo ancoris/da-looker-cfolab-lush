@@ -5,6 +5,7 @@ view: ml_invoice_rec_kmeans_contact_all_output_evaluation_unpivot {
   dimension: centroid_id {
     type: number
     sql: ${TABLE}.centroid_id ;;
+    primary_key: yes
   }
 
   dimension: value {
