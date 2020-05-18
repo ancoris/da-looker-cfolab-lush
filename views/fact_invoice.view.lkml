@@ -100,8 +100,8 @@ view: fact_invoice {
     sql: ${TABLE}.company_name ;;
     group_label: "Company info"
     link: {
-      label: "See all invoices from {{ value }}"
-      url: "/looks/31?f[fact_invoice.company_name]={{ value }}&f[fact_invoice.invoice_type]={{ _filters['fact_invoice.invoice_type'] | url_encode }}&sorts=fact_invoice.invoice_issue_date+desc"
+      label: "See all invoices of this status from {{ value }}"
+      url: "/looks/31?f[fact_invoice.company_name]={{ value }}&f[fact_invoice.invoice_type]={{ _filters['fact_invoice.invoice_type'] | url_encode }}&f[fact_invoice.payment_status]={{ _filters['fact_invoice.payment_status'] | url_encode }}&sorts=fact_invoice.invoice_issue_date+desc"
     }#31 is the look number for "All Invoices" in this instance.
   }
 
