@@ -141,7 +141,6 @@ view: fact_invoice {
     value_format_name: gbp
     sql: ${TABLE}.total_paid_invoice_amount_gross_global ;;
     group_label: "Company info"
-    drill_fields: [invoice_details*]
   }
 
   dimension: invoice_amount_net_global {
@@ -414,7 +413,15 @@ view: fact_invoice {
 
   }
   set: invoice_details {
-    fields: [invoice_friendly_id, invoice_issue_date, invoice_due_date, invoice_term_days, invoice_amount_gross_global, payment_amount_global, payment_amount_outstanding_global, payment_status]
+    fields: [
+      fact_invoice.invoice_friendly_id,
+      fact_invoice.invoice_issue_date,
+      fact_invoice.invoice_due_date,
+      fact_invoice.invoice_term_days,
+      fact_invoice.invoice_amount_gross_global,
+      fact_invoice.payment_amount_global,
+      fact_invoice.payment_amount_outstanding_global,
+      fact_invoice.payment_status]
   }
 
 
