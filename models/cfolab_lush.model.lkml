@@ -37,6 +37,7 @@ explore: ml_invoice_rec_classification_prediction_output {
 explore: ml_invoice_rec_kmeans_contact_all_output_extract {
   label: "Contact REC cluster output"
   join: ml_invoice_rec_kmeans_contact_all_output_evaluation {
+    outer_only: yes
     relationship: many_to_one
     sql_on: ${ml_invoice_rec_kmeans_contact_all_output_evaluation.centroid_id} =${ml_invoice_rec_kmeans_contact_all_output_extract.nearest_centroid_id} ;;
   }
