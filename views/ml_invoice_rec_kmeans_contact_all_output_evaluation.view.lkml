@@ -1,6 +1,7 @@
 view: ml_invoice_rec_kmeans_contact_all_output_evaluation {
-  sql_table_name: `cfolab-lush.dw_pl_cfolab_ml_unsupervised.demo`
-    ;;
+  sql_table_name: `cfolab-lush.dw_pl_cfolab_ml_unsupervised.demo` ;;
+
+  label: "Cluster centroids (REC)"
 
   dimension: avg_days_late {
     type: number

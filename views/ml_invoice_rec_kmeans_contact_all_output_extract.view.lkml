@@ -1,6 +1,7 @@
 view: ml_invoice_rec_kmeans_contact_all_output_extract {
-  sql_table_name: `cfolab-lush.dw_pl_cfolab_ml_unsupervised.ml_invoice_rec_kmeans_contact_all_output_extract_view`
-    ;;
+  sql_table_name: `cfolab-lush.dw_pl_cfolab_ml_unsupervised.ml_invoice_rec_kmeans_contact_all_output_extract_view` ;;
+
+  label: "Contact cluster assignment (REC)"
 
   dimension: avg_days_late {
     type: number
