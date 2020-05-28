@@ -41,6 +41,10 @@ explore: ml_invoice_rec_kmeans_contact_all_output_extract {
     relationship: many_to_one
     sql_on: ${ml_invoice_rec_kmeans_contact_all_output_evaluation.centroid_id} =${ml_invoice_rec_kmeans_contact_all_output_extract.nearest_centroid_id} ;;
   }
+  join: ml_invoice_rec_kmeans_contact_centroid_match_to_original {
+    relationship: many_to_one
+    sql_on: ${ml_invoice_rec_kmeans_contact_all_output_extract.nearest_centroid_id} = ${ml_invoice_rec_kmeans_contact_centroid_match_to_original.current_centroid_id} ;;
+  }
   join: fact_invoice {
     relationship: one_to_many
     sql_on: ${ml_invoice_rec_kmeans_contact_all_output_extract.company_id} = ${fact_invoice.company_id} ;;
