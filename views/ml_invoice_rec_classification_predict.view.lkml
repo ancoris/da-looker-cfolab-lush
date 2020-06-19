@@ -67,6 +67,7 @@ view: ml_invoice_rec_classification_predict {
   }
 
   dimension: invoice_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.invoice_id ;;
   }

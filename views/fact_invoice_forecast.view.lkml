@@ -187,6 +187,12 @@ view: fact_invoice_forecast {
     drill_fields: [invoice_details*]
 
   }
+
+  measure: min_payment_date {
+    type: date
+    sql: (select(min(${payment_date}) from `cfolab-lush.dw_pl_cfolab.fact_invoice_forecast`) ) ;;
+  }
+
   set: invoice_details {
     fields: [invoice_friendly_id, invoice_issue_date]
   }

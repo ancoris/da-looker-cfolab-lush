@@ -1,7 +1,6 @@
-view: ml_invoice_rec_kmeans_contact_all_output_extract {
-  sql_table_name: `cfolab-lush.dw_pl_cfolab_ml_unsupervised.ml_invoice_rec_kmeans_contact_all_output_extract_view` ;;
-
-  label: "Contact Cluster Assignment (REC)"
+view: ml_invoice_rec_kmeans_contact_all_output_extract_past_combine_2 {
+  sql_table_name: `cfolab-lush.dbt_bsl_pl_cfolab_ml_unsupervised_past.ml_invoice_rec_kmeans_contact_all_output_extract_past_combine_2`
+    ;;
 
   dimension: avg_days_late {
     type: number
@@ -14,7 +13,6 @@ view: ml_invoice_rec_kmeans_contact_all_output_extract {
   }
 
   dimension: company_id {
-    primary_key: yes
     type: string
     sql: ${TABLE}.company_id ;;
   }
@@ -40,10 +38,18 @@ view: ml_invoice_rec_kmeans_contact_all_output_extract {
   }
 
   dimension: nearest_centroid_id {
-    label: "Original Nearest Centroid Id"
-    hidden: yes
-    type: number
+    type: string
     sql: ${TABLE}.nearest_centroid_id ;;
+  }
+
+  dimension: offset_months {
+    type: number
+    sql: ${TABLE}.offset_months ;;
+  }
+
+  dimension: original_centroid_id {
+    type: number
+    sql: ${TABLE}.original_centroid_id ;;
   }
 
   dimension: payments_to_invoice_value_ratio {
@@ -70,6 +76,4 @@ view: ml_invoice_rec_kmeans_contact_all_output_extract {
     type: count
     drill_fields: []
   }
-
-
 }

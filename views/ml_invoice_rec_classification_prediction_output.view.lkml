@@ -27,7 +27,7 @@ view: ml_invoice_rec_classification_prediction_output {
 
   dimension: probability {
     label: "Certainty 🧠"
-    description: "Using facts about this company's invoice history, our Machine Learning model has determined the Predicted Class with this much certainty"
+    description: "Using facts about this company's invoice history, our Machine Learning model has determined the Predicted Class with the given certainty"
     type: number
     sql: ${TABLE}.probability ;;
     drill_fields: [probability]
