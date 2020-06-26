@@ -68,9 +68,22 @@ explore: ml_invoice_rec_kmeans_contact_all_output_extract_past_combine_2 {
   label: "Extract past combined 2"
 }
 
+explore: ml_invoice_rec_kmeans_contact_all_output_evaluation_past_combined {
+  label: "Extract past combined with normalised"
+  join: ml_invoice_rec_kmeans_contact_all_output_evaluation_past_combined_normalised {
+    relationship: one_to_one
+    sql_on: ${ml_invoice_rec_kmeans_contact_all_output_evaluation_past_combined.centroid_id} =  ${ml_invoice_rec_kmeans_contact_all_output_evaluation_past_combined_normalised.centroid_id}
+    and ${ml_invoice_rec_kmeans_contact_all_output_evaluation_past_combined.offset_months} = ${ml_invoice_rec_kmeans_contact_all_output_evaluation_past_combined_normalised.offset_months};;
+  }
+}
+
 explore: fact_invoice_score {
   join: contact {
     relationship: one_to_one
     sql_on: ${fact_invoice_score.company_id} = ${contact.contact_id} ;;
+  }
+  join: fact_company_score {
+    relationship: many_to_one
+    sql_on: ${fact_invoice_score.company_id} = ${fact_company_score.company_id} ;;
   }
 }
