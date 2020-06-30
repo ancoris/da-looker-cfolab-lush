@@ -21,7 +21,7 @@ view: ml_invoice_rec_classification_prediction_output {
     label: "Prediction 🧠"
     type: string
     sql: ${TABLE}.predicted_class ;;
-    html: {% if {{value}} == 'Late' %}<b><font style="color:#B32F37">{{ value }}</font></b>{%endif%};;
+    html: {% if value == 'Late' %}<b><font style="color:#B32F37">{{ value }}</font></b>{%endif%};;
   }
 
 
