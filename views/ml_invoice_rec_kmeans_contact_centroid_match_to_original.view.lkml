@@ -23,7 +23,7 @@ dimension: name_of_cluster {
   sql: CASE
         WHEN ${original_centroid_id} = 3 THEN "Comfort Zone"
         WHEN ${original_centroid_id} = 2 THEN "Royalty"
-        WHEN ${original_centroid_id} = 1 THEN "Rehab"
+        WHEN ${original_centroid_id} = 1 THEN "Watch List"
         WHEN ${original_centroid_id} = 4 THEN "Sleepy"
         ELSE "Spare Cluster"
       END;;

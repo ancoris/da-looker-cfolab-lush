@@ -1,14 +1,14 @@
-connection: "cfolab-lush"
+connection: "cfolab-dev"
 
 # include all the views
 include: "/views/**/*.view"
 
-datagroup: cfolab_lush_default_datagroup {
+datagroup: cfolab_dev_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
 
-persist_with: cfolab_lush_default_datagroup
+persist_with: cfolab_dev_default_datagroup
 
 explore: fact_invoice {
   label: "All invoices"
