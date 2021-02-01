@@ -49,13 +49,13 @@ view: fact_invoice_forecast {
   }
 
   dimension: invoice_sequence_forward_view {
-    label: "Invoice sequence no forward view"
+    label: "Invoice sequence foreward view"
     type: number
     sql: ${TABLE}.invoice_sequence_forward_view ;;
     group_label: "Scenario"
   }
 
-    dimension: invoice_type {
+  dimension: invoice_type {
     type: string
     sql: ${TABLE}.invoice_type ;;
     group_label: "Invoice info"
@@ -187,6 +187,13 @@ view: fact_invoice_forecast {
     drill_fields: [invoice_details*]
 
   }
+
+  measure: min_payment_date {
+    type: date
+    sql: (select min(payment_date) from `cfolab-lush.dw_pl_cfolab.fact_invoice_forecast`) ;;
+
+  }
+
   set: invoice_details {
     fields: [invoice_friendly_id, invoice_issue_date]
   }

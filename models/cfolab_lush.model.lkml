@@ -1,4 +1,4 @@
-connection: "cfolab-lush"
+connection: "cfolab-dev"
 
 # include all the views
 include: "/views/**/*.view"
