@@ -21,13 +21,13 @@ view: ml_invoice_rec_classification_prediction_output {
     label: "Prediction 🧠"
     type: string
     sql: ${TABLE}.predicted_class ;;
-    html: {% if {{value}} == 'Late' %}<b><font style="color:#B32F37">{{ value }}</font></b>{%endif%};;
+    html: {% if value == 'Late' %}<b><font style="color:#B32F37">{{ value }}</font></b>{%endif%};;
   }
 
 
   dimension: probability {
     label: "Certainty 🧠"
-    description: "Using facts about this company's invoice history, our Machine Learning model has determined the Predicted Class with this much certainty"
+    description: "Using facts about this company's invoice history, our Machine Learning model has determined the Predicted Class with the given certainty"
     type: number
     sql: ${TABLE}.probability ;;
     drill_fields: [probability]

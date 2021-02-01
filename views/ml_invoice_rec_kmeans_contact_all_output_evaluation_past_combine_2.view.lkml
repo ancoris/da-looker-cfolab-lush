@@ -1,7 +1,6 @@
-view: ml_invoice_rec_kmeans_contact_all_output_evaluation {
-  sql_table_name: `cfolab-lush.dw_pl_cfolab_ml_unsupervised.demo` ;;
-
-  label: "Cluster Centroids (REC)"
+view: ml_invoice_rec_kmeans_contact_all_output_evaluation_past_combine_2 {
+  sql_table_name: `cfolab-lush.dbt_bsl_pl_cfolab_ml_unsupervised_past.ml_invoice_rec_kmeans_contact_all_output_evaluation_past_combine_2`
+    ;;
 
   dimension: avg_days_late {
     type: number
@@ -14,9 +13,7 @@ view: ml_invoice_rec_kmeans_contact_all_output_evaluation {
   }
 
   dimension: centroid_id {
-    hidden: yes
-    primary_key: yes
-    type: number
+    type: string
     sql: ${TABLE}.centroid_id ;;
   }
 
@@ -38,6 +35,11 @@ view: ml_invoice_rec_kmeans_contact_all_output_evaluation {
   dimension: late_or_outstanding_to_total_ratio {
     type: number
     sql: ${TABLE}.late_or_outstanding_to_total_ratio ;;
+  }
+
+  dimension: offset_months {
+    type: number
+    sql: ${TABLE}.offset_months ;;
   }
 
   dimension: payments_to_invoice_value_ratio {
